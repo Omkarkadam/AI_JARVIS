@@ -49,8 +49,8 @@ def sendEmail(to, content):
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.ehlo()
     server.starttls()
-    server.login('youremail@gmail.com', 'your-password')
-    server.sendmail('youremail@gmail.com', to, content)
+    server.login('omkar.kadam5@gmail.com', 'your-password')
+    server.sendmail('omkar.kadam5@gmail.com', to, content)
     server.close()
 
 if __name__ == "__main__":
@@ -92,11 +92,11 @@ if __name__ == "__main__":
             codePath = "D:\Microsoft VS Code"
             os.startfile(codePath)
 
-        elif 'email to harry' in query:
+        elif 'email to omkar' in query:
             try:
                 speak("What should I say?")
                 content = takeCommand()
-                to = "youremail@gmail.com"    
+                to = "omkar.kadam5@gmail.com"    
                 sendEmail(to, content)
                 speak("Email has been sent!")
             except Exception as e:
