@@ -36,20 +36,25 @@ def takeCommand():
     r = sr.Recognizer()
     with sr.Microphone() as source:
         print("Listening...")
-        
+        r.pause_threshold = 1
         audio = r.listen(source)
 
     try:
-        print("Transcription:"+r.recognize_google(audio))
-    except Exception:
-        print("Something went wrong")    
-    
+        print("Recognizing...")    
+        query = r.recognize_google(audio, language='en-in')
+        print(f"User said: {query}\n")
+
+    except Exception as e:
+        # print(e)    
+        print("Say that again please...")  
+        return "None"
+    return query
 
 def sendEmail(to, content):
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.ehlo()
     server.starttls()
-    server.login('omkar.kadam5@gmail.com', 'your-password')
+    server.login('omkar.kadam5@gmail.com', 'Omkar@19978')
     server.sendmail('omkar.kadam5@gmail.com', to, content)
     server.close()
 
@@ -89,7 +94,7 @@ if __name__ == "__main__":
             speak(f"Sir, the time is {strTime}")
 
         elif 'open code' in query:
-            codePath = "D:\Microsoft VS Code"
+            codePath = "C:\\Users\\Haris\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
             os.startfile(codePath)
 
         elif 'email to omkar' in query:
@@ -101,4 +106,4 @@ if __name__ == "__main__":
                 speak("Email has been sent!")
             except Exception as e:
                 print(e)
-                speak("Sorry my friend omkar bhai. I am not able to send this email")  
+                speak("Sorry my friend harry bhai. I am not able to send this email")    
